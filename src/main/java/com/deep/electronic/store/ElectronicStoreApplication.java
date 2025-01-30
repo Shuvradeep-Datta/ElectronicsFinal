@@ -1,5 +1,8 @@
 package com.deep.electronic.store;
 
+import java.util.List;
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -7,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import com.deep.electronic.store.entities.Role;
 import com.deep.electronic.store.entities.User;
 import com.deep.electronic.store.repository.RoleRepository;
 import com.deep.electronic.store.repository.UserRepository;
@@ -39,13 +43,13 @@ public class ElectronicStoreApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		User user = userRepository.findByEmail("sddatta505@gmail.com").get();
-		String token = jwtHelper.generateToken(user);
-		System.out.println(token);
-		
-		Boolean tokenExpired = jwtHelper.isTokenExpired(token);
-		System.out.println(tokenExpired);
-		
+//		User user1 = userRepository.findByEmail("sddatta505@gmail.com").get();
+//		String token = jwtHelper.generateToken(user1);
+//		System.out.println(token);
+//		
+//		Boolean tokenExpired = jwtHelper.isTokenExpired(token);
+//		System.out.println(tokenExpired);
+//		
 //		
 //		Role roleAdmin = roleRepository.findByName("ROLE_ADMIN").orElse(null);
 //
@@ -63,27 +67,27 @@ public class ElectronicStoreApplication implements CommandLineRunner {
 //			role2.setName("ROLE_NORMAL");
 //			roleRepository.save(role2);
 //		}
+		
 //		
 //		
-//		
-//		//Creation of Admin User
-//		
-//		User user = userRepository.findByEmail("sddatta505@gmail.com").orElse(null);
-//		if(user==null) {
-//			user = User.builder()
-//					.userId(UUID.randomUUID().toString())
-//					.name("Shuvradeep Datta")
-//					.email("sddatta505@gmail.com")
-//					.password(passwordEncoder.encode("deep"))
-//					.gender("MALE")
-//					.about("Hi Hello How are you !!")
-//					.imageName("xyz.png")
+		//Creation of Admin User
+		
+		User user = userRepository.findByEmail("sddatta505@gmail.com").orElse(null);
+		if(user==null) {
+			user = User.builder()
+					.userId(UUID.randomUUID().toString())
+					.name("Shuvradeep Datta")
+					.email("sddatta505@gmail.com")
+					.password(passwordEncoder.encode("deep"))
+					.gender("MALE")
+					.about("Hi Hello How are you !!")
+					.imageName("xyz.png")
 //					.roles(List.of(roleAdmin,roleNormal))
-//					.build();
-//			System.out.println(user);
-//			
-//			userRepository.save(user);
-//			
+					.build();
+			System.out.println(user);
+			
+			userRepository.save(user);
+			
 //			
 //			
 	
@@ -92,6 +96,7 @@ public class ElectronicStoreApplication implements CommandLineRunner {
 	
 		
 	}
+}
 	
 		
 		
